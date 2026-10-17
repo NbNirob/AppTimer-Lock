@@ -137,7 +137,12 @@ class AppTimerRepository(
         val intent = Intent(Intent.ACTION_MAIN, null).apply {
             addCategory(Intent.CATEGORY_LAUNCHER)
         }
-        val resolveInfos = pm.queryIntentActivities(intent, PackageManager.MATCH_ALL)
+        val resolveInfos = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(0))
+        } else {
+            @Suppress("DEPRECATION")
+            pm.queryIntentActivities(intent, 0)
+        }
         val monitoredMap = appLimitDao.getAllConfigsSync().associateBy { it.packageName }
         val ourPackage = context.packageName
 
