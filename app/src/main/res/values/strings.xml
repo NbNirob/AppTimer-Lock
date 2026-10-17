@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AppTimer Lock</string>
+    <string name="accessibility_service_name">AppTimer Lock Enforcement Service</string>
+    <string name="accessibility_service_description">Used strictly to detect when apps with active usage allowances enter the foreground and display the blocking shield once daily usage limits expire. Does not read or collect personal content.</string>
+</resources>
